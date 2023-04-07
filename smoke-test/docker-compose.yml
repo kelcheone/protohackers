@@ -13,7 +13,8 @@ services:
     build: .
     container_name: smoke-test
     ports:
-      - 8080:8080
+      # map port 8080 on the host to port 9080 in the container
+      - 9080:9080
     volumes:
       - .:/app
     command: go run main.go
