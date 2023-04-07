@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	addr, err := net.ResolveTCPAddr("tcp", ":8080")
+	addr, err := net.ResolveTCPAddr("tcp", ":9080")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -16,7 +16,7 @@ func main() {
 		log.Fatal(err)
 	}
 	defer ln.Close()
-	fmt.Println("Listening on port 8000")
+	fmt.Println("Listening on port 9080")
 	for {
 		conn, err := ln.Accept()
 		if err != nil {

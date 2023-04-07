@@ -9,7 +9,7 @@ import (
 )
 
 func TestEchoServer(t *testing.T) {
-	conn, err := net.Dial("tcp", "localhost:8000")
+	conn, err := net.Dial("tcp", "localhost:9080")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -21,12 +21,12 @@ func TestEchoServer(t *testing.T) {
 	// The server echoes the message back to the client
 	// Read the response
 	message, err := bufio.NewReader(conn).ReadString('\n')
-	message2, _ := bufio.NewReader(conn).ReadString('\n')
+	// message2, _ := bufio.NewReader(conn).ReadString('\n')
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	fmt.Print("Message from server: " + message)
-	fmt.Print("Message from server: " + message2)
+	// fmt.Print("Message from server: " + message2)
 }
