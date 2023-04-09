@@ -7,6 +7,8 @@ import (
 	"log"
 	"net"
 	"testing"
+
+	"github.com/magiconair/properties/assert"
 )
 
 func TestIsPrime(t *testing.T) {
@@ -53,19 +55,20 @@ func TestIsPrime(t *testing.T) {
 	for index, req := range requests {
 		fmt.Fprintf(conn, `{"method":"%s","number":%f}`, req.method, req.number)
 		msg, _ := bufio.NewReader(conn).ReadString('\n')
-		fmt.Println(msg)
 		// convert JSON to struct
 		var res response
 		err := json.Unmarshal([]byte(msg), &res)
 		if err != nil {
 			log.Fatal(err)
 		}
-		// assert.Equal(t, expected[index].method, res.Method)
-		// assert.Equal(t, expected[index].prime, res.Prime)
-		fmt.Println(res.Method, res.Prime)
-		if index == 0 {
-			fmt.Println(expected[index].method, expected[index].prime)
+		if res.Method != expected[index].method || res.Prime != expected[index].prime {
+			t.Errorf("Expected %v, got %v", expected[index], res)
+			continue
 		}
+
+		assert.Equal(t, res.Method, expected[index].method)
+		assert.Equal(t, res.Prime, expected[index].prime)
+
 	}
 
 }

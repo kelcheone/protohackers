@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  prime-time:
+
+    build: .
+    container_name: prime-time
+    ports:
+      - 9080:9080
+    volumes:
+      - .:/app
+    command: go run main.go

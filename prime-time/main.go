@@ -70,7 +70,8 @@ func handleConn(conn net.Conn) {
 			encoder := json.NewEncoder(conn)
 			err = encoder.Encode(res)
 			if err != nil {
-				log.Fatal(err)
+				log.Println(err)
+				continue
 			}
 
 			err = conn.Close()
@@ -84,7 +85,7 @@ func handleConn(conn net.Conn) {
 		encoder := json.NewEncoder(conn)
 		err = encoder.Encode(res)
 		if err != nil {
-			log.Fatal(err)
+			log.Println(err)
 		}
 	}
 
